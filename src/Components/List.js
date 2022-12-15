@@ -1,3 +1,5 @@
+import React from 'react'
+import PropTypes from 'prop-types';
 
 export function List(props) {
     return <div className={props.container}>
@@ -13,21 +15,33 @@ export function List(props) {
 export function ListItem(props) {
     const data = props.data;
     if (props.name === 'groceries') {
-        return data.map((item, id) => {
+        return data.map((grocery, id) => {
             return <li key={id} className="list-group-item d-flex justify-content-between align-items-center mt-4">
-                {item.name} - Stock: {item.quantity} - Price: {item.price}
-                <button type="button" id={`${item.id}`} className={`${item.quantity}` ? 'btn btn-primary' : 'btn btn-primary not-allowed'}>Add to Cart</button>
+                {grocery.name} - Stock: {grocery.quantity} - Price: {grocery.price}
+                <button type="button" id={`${grocery.id}`} className={`${grocery.quantity}` ? 'btn btn-primary' : 'btn btn-primary not-allowed'}>Add to Cart</button>
             </li>
         })
     }
 
     if (props.name === 'shoppingCart') {
-        return data.map((item, id) => {
+        return data.map((grocery, id) => {
             return <li key={id} class="list-group-item d-flex justify-content-between" aria-current="true">
-                ${item.name} - Amount: ${item.quantity} - Total Price: ${item.price}
-                <button type="button" id={item.id} class="btn btn-primary">Remove 1</button>
+                ${grocery.name} - Amount: ${grocery.quantity} - Total Price: ${grocery.price}
+                <button type="button" id={grocery.id} class="btn btn-primary">Remove 1</button>
             </li>
         })
     }
 }
 
+
+List.propTypes = {
+    container: PropTypes.string.isRequired,
+    style: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    header: PropTypes.string.isRequired
+}
+
+ListItem.propTypes = {
+    data: PropTypes.array.isRequired,
+    name: PropTypes.string.isRequired
+}
