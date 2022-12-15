@@ -1,6 +1,6 @@
 import './App.css';
-import { List, ListItem } from './components/List'
-import { groceries, shoppingCart } from './data/data'
+import { List, ListItem } from './Components/List'
+import { groceries, shoppingCart } from './Data/data'
 
 function App() {
   return (
